@@ -3,317 +3,586 @@ package com.company;
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
-
-
-
-
-
-
-
-
-
-/*
-        public class CompleteThePattern {
-            public static String pattern ( int n) {
-                if (n < 1) {
-                    return "";
-                }
-
-                StringBuilder sb = new StringBuilder();
-                for (int i = 1; i <= n; i++) {
-                    for (int j = n; j >= i; j--) {
-                        sb.append(j);
-                    }
-                    if (i < n)
-                        sb.append('\n');
-                }
-                return sb.toString();
-            }
-        }
-////////////////////////////////////////
-
-        7 kyu
-        Thinking & Testing: A and B?
-                Java:
-
-        class ThinkingAndTesting {
-            static int testAB(int a, int b) {
-                return a | b;
-            }
-        }
-
-       ////////////////////////////////////
-
-        7 kyu
-                Covfefe
-        Java:
-
-        class Covfefe {
-            static String covfefe(final String tweet) {
-                return tweet.contains("coverage") ?
-                        tweet.replace("coverage", "covfefe") :
-                        tweet + " covfefe";
-            }
-        }
-
-      ////////////////////////////////////////////////////
-
-        7 kyu
-        Determine if the poker hand is flush
+        /*
+        kyu
+        N-Dimensional Vector Magnitude
         Java:
 
 import java.util.Arrays;
 
-        public class Kata{
-            public static boolean CheckIfFlush(String[] cards){
-                final char target = cards[0].charAt(cards[0].length()-1);
-                return Arrays.stream(cards)
-                        .allMatch( s -> s.charAt(s.length()-1) == target );
+        public class Kata {
+            public static double magnitude(double[] vector) {
+                return Math.sqrt(Arrays.stream(vector).map(x -> x * x).sum());
             }
+        }
+
+       ///////////////////////////////////
+        7 kyu
+        Stanton measure
+        Java:
+
+import static java.util.Arrays.stream;
+
+        public class Kata {
+
+            public static int stantonMeasure(int[] arr) {
+                final int n = stream(arr).filter(e->e==1).sum();
+                return (int)stream(arr).filter(e->e==n).count();
+            }
+
+        }
+
+        ////////////////////////////////////////
+
+        7 kyu
+        Unlucky Days
+        Java:
+
+import java.time.*;
+import java.util.Arrays;
+
+        public class Kata {
+            public static long unluckyDays(int year) {
+                return Arrays.stream(Month.values())
+                        .map(month -> LocalDate.of(year, month, 13))
+                        .map(LocalDate::getDayOfWeek)
+                        .filter(DayOfWeek.FRIDAY::equals)
+                        .count();
+            }
+        }
+
+       ////////////////////////////////////////
+
+        7 kyu
+        Shortest Word
+        Java:
+
+import java.util.stream.*;
+        public class Kata {
+            public static int findShort(String s) {
+                return Stream.of(s.split(" "))
+                        .mapToInt(String::length)
+                        .min()
+                        .getAsInt();
+            }
+        }
+
+        //////////////////////////////////////////////
+
+        8 kyu
+        Beginner Series #2 Clock
+        Java:
+
+        public class Clock
+        {
+            public static int Past(int h, int m, int s)
+            {
+                return h * 3600000 + m * 60000 + s * 1000;
+            }
+        }
+
+        //////////////////////////////////////////////
+
+        8 kyu
+        A wolf in sheep's clothing
+        Java:
+
+import java.util.*;
+
+        public class ZywOo {
+
+            public static String warnTheSheep(String[] array) {
+                Collections.reverse(Arrays.asList(array));
+                int pos = Arrays.asList(array).indexOf("wolf");
+                return pos == 0 ? "Pls go away and stop eating my sheep" : "Oi! Sheep number " + pos + "! You are about to be eaten by a wolf!";
+            }
+
+        }
+
+       ////////////////////////////////////////////
+
+        8 kyu
+        N-th Power
+        Java:
+
+        public class Kata {
+            public static int nthPower(int[] array, int n) {
+                if (n < 0 || n >= array.length) return -1;
+                return (int) Math.pow(array[n], n);
+            }
+        }
+
+        /////////////////////////////////////////
+
+        8 kyu
+        Twice as old
+        Java:
+
+import static java.lang.Math.abs;
+
+        public class TwiceAsOld {
+
+            public static int TwiceAsOld(int d, int s) {
+                return abs(d-s-s);
+            }
+
+        }
+
+        ///////////////////////////////
+
+        8 kyu
+        Basic subclasses - Adam and Eve
+        Java:
+
+        public class God {
+            public static Human[] create(){
+                return new Human[]{new Man(), new Woman()};
+            }
+        }
+        class Human{
+        }
+        class Man extends Human{
+        }
+        class Woman extends Human{
+        }
+
+      ///////////////////////////////////
+
+        8 kyu
+        Swap Values
+        Java:
+
+        class Swapper{
+
+            public Object[] arguments;
+
+            public Swapper(final Object[] args){
+                arguments=args;
+            }
+
+            public void swapValues() {
+                Object temp = arguments[0];
+                arguments[0] = arguments[1];
+                arguments[1] = temp;
+            }
+        }
+
+       /////////////////////////////////////////
+
+        8 kyu
+        Cat years, Dog years
+        Java:
+
+        public class Dinglemouse {
+            public static int[] humanYearsCatYearsDogYears(final int y) {
+                return new int[]{y,y==1?15:16+4*y,y==1?15:14+5*y};
+            }
+        }
+
+        ///////////////////////////////////
+
+        8 kyu
+        Holiday VIII - Duty Free
+        Java:
+
+        public class Kata {
+
+            public static int dutyFree(int normPrice, int discount, int hol) {
+
+                return hol*100/(normPrice*discount);
+
+            }
+
+        }
+
+      ///////////////////////////////////////////
+
+        8 kyu
+        To square(root) or not to square(root)
+        Java:
+
+        public class Kata
+        {
+            public static int[] squareOrSquareRoot(int[] array)
+            {
+                for(int i = 0; i < array.length; i++) {
+                    if (Math.sqrt(array[i]) % 1 == 0) array[i] = (int) Math.sqrt(array[i]);
+                    else array[i] = array[i] * array[i];
+                }
+                return array;
+            }
+        }
+
+       /////////////////////////////////////////////////
+
+        8 kyu
+        101 Dalmatians - squash the bugs, not the dogs!
+                Java:
+
+        class ZywOo {
+            static String howManyDalmatians(int number) {
+                return number <= 10 ? "Hardly any" :
+                        number <= 50 ? "More than a handful!" :
+                                number == 101 ? "101 DALMATIANS!!!" : "Woah that's a lot of dogs!";
+            }
+        }
+
+      ////////////////////////////////////////////
+
+        8 kyu
+        get character from ASCII Value
+        Java:
+
+        public class Ascii {
+            public static char getChar(int c) {
+                return (char)c;
+            }
+        }
+
+      /////////////////////////////////////////
+
+        8 kyu
+                Plural
+        Java:
+
+        public class Plural{
+            public static boolean isPlural(float f){
+                return (f != 1 );
+            }
+        }
+
+       /////////////////////////////////////////
+
+        8 kyu
+        Thinkful - Logic Drills: Traffic light
+        Java:
+
+        public class TrafficLights {
+
+            public static String updateLight(String current) {
+                switch (current) {
+                    case "red": return "green";
+                    case "yellow": return "red";
+                    case "green": return "yellow";
+                    default: throw new IllegalArgumentException();
+                }
+            }
+
         }
 
       ////////////////////////////////////////////////////////
 
-        7 kyu
-        Simple Fun #63: Shape Area
+        8 kyu
+        No zeros for heros
         Java:
 
-        public class Kata {
-            public static int shapeArea(int n) {
+        public class NoBoring {
+            public static int noBoringZeros(int n) {
+                if (n == 0)
+                    return n;
 
-                int fieldsOnLongDiagonals = n*n;
-                int fieldsOnShortDiagonals = (n-1) * (n-1);
-                return fieldsOnLongDiagonals + fieldsOnShortDiagonals;
+                while (n % 10 == 0)
+                    n /= 10;
 
+                return n;
             }
         }
 
-     /////////////////////////////////////////////////////
+       ////////////////////////////////////////////////////
 
         7 kyu
-        Thinking & Testing : True or False
-        Java:
+        Simple string matching
+        JavaScript:
 
-        public class ThinkingAndTesting {
+        function solve(a,b){
+            a = a.replace("*", "\\S*");
+            var re = new RegExp(a);
+            return b.match(re) == b ? true : false
+        }
 
-            public static int testTrueFalse(int n) {
-                return Integer.bitCount(n);
+        //////////////////////////////////////////////////////
+
+        7 kyu
+        Stones on the Table
+        JavaScript:
+
+        function solve(stones) {
+        return stones.split('').reduce((totalRemove, stone, i) => {
+            return i >= 1 && (stones[i - 1] === stone) ? ++totalRemove : totalRemove
+        }, 0)
+}
+
+      ///////////////////////////////////////////////////////////
+
+        8 kyu
+        Can we divide it?
+        JavaScript:
+
+        let isDivideBy = (number, a, b) => {
+            if (number % a === 0 && number % b === 0) {
+                return true
+            } else {
+                return false
             }
         }
 
-       ///////////////////////////////////////////////////////////////////////////////
+      //////////////////////////////////////////////////////////
 
-        7 kyu
-        Simple Fun #41: Elections Winners
+        8 kyu
+        Is he gonna survive?
+        JavaScript:
+
+        hero = (bullets, dragons) =>{
+            if (bullets/2 >= dragons) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+      //////////////////////////////////////////////
+
+        8 kyu
+        Generate range of integers
+        JavaScript:
+
+        function generateRange(min, max, step){
+            let arr = [];
+            for (let i=min; i<=max; i += step) {
+                arr.push(i);
+            }
+            return arr;
+        }
+
+        ////////////////////////////////////////
+
+        8 kyu
+        Returning Strings
+        Python:
+
+        def greet(name):
+        return "Hello, " + name + " how are you doing today?"
+
+       //////////////////////////////////////////////////
+
+        8 kyu
+        Grasshopper - Summation
         Java:
 
-        class ElectionWinners {
-            static int find(final int[] votes, final int k) {
-                int winners = 0;
+        public class GrassHopper {
 
-                for(int i = 0; i < votes.length; i++) {
-                    int max = votes[i] + k;
-                    boolean isMax = true;
-                    for(int j = 0; j < votes.length; j++)
-                        if(max <= votes[j] && j != i) {
-                            isMax = false;
-                            break;
-                        }
-                    if(isMax)
-                        winners++;
+            public static int summation(int n) {
+
+                return  n*(n+1)/2;
+            }
+        }
+
+       /////////////////////////////////////////////////
+
+        7 kyu
+        Simple consecutive pairs
+        Java:
+
+import java.util.*;
+        class Solution{
+            public static int solve(int [] arr){
+                int count = 0;
+                for(int i=0; i<arr.length-1; i+=2){
+                    if(Math.abs(arr[i]-arr[i+1])==1){
+                        count++;
+                    }
+                }
+                return count;
+            }
+        }
+
+      //////////////////////////////////////////////////////
+
+        8 kyu
+        DNA to RNA Conversion
+        Java:
+
+        public class Bio {
+            public String dnaToRna(String dna) {
+
+                String rna = "";
+
+                // For every letter in String called DNA
+                for(int i = 0; i < dna.length(); i++) {
+
+                    // get the letter at index i
+                    char letter = dna.charAt(i);
+
+                    // if letter != T,
+                    //    add letter to rna
+                    // else
+                    //   add U
+                    if(letter != 'T') {
+                        rna += letter;
+                    } else {
+                        rna += 'U';
+                    }
+
                 }
 
-                return winners;
-            }
-        }
 
-     ///////////////////////////////////////////
-
-        7 kyu
-        Waiting room
-        Java:
-
-        public class Kata {
-            public static int lastChair(int n) {
-                return n - 1;
-            }
-        }
-
-       ///////////////////////////////////////////////
-
-        7 kyu
-        You Can't Code Under Pressure #2
-        Java:
-
-        public class Counter {
-            private int num = 0;
-
-            public void increment() {
-                num++;
-            }
-
-            public int check() {
-                return num;
+                return rna;  // Do your magic!
             }
         }
 
        //////////////////////////////////////////////////////
 
-        7 kyu
-        Laxative Shot Roulette
-        Java:
+        public class Bio {
+            public String dnaToRna(String dna) {
 
-        public class Kata {
+                String rna = "";
 
-            public static double getChance(int n, int x, int a) {
+                // For every letter in String called DNA
+                for(int i = 0; i < dna.length(); i++) {
 
-                double prob = 1;
-                for(int i = 0; i < a; i++){
-                    prob *= (double)(n-x-i) / (n-i);
+                    // get the letter at index i
+                    char letter = dna.charAt(i);
+
+                    // if letter != T,
+                    //    add letter to rna
+                    // else
+                    //   add U
+                    if(letter != 'T') {
+                        rna += letter;
+                    } else {
+                        rna += 'U';
+                    }
+
                 }
 
-                return Math.round(prob*100.0)/100.0;
+
+                return rna;  // Do your magic!
             }
         }
 
-     ////////////////////////////////////////////////////////////////
-        7 kyu
-        Guess the Sequence
-        Java:
-
-import java.util.stream.IntStream;
-
-        class JomoPipi {
-            static int[] sequence(int x) {
-                return IntStream.rangeClosed(1, x).mapToObj(Integer::toString).sorted().mapToInt(Integer::parseInt).toArray();
-            }
-        }
-
-     ///////////////////////////////////////////////////////////////////////
+      ///////////////////////////////////////
 
         7 kyu
-        Drying Potatoes
+        Complementary DNA
         Java:
 
-        class Potatoes {
+        public class DnaStrand {
+            public static String makeComplement(String dna) {
 
-            public static int potatoes(int p0, int w0, int p1) {
-                return w0 * (100 - p0) / (100 - p1);
-            }
-        }
+                if (dna == null || dna.isEmpty()) {
+                    return dna;
 
-        ///////////////////////////////////////////////////////
-
-        7 kyu
-        Green Glass Door
-        Java:
-
-
-        public class GreenGlassDoor {
-
-            boolean stepThroughWith(String s) {
-                return s.matches(".*(\\w)\\1.*");
-            }
-
-        }
-
-        ////////////////////////////////////////////////////////
-
-        7 kyu
-        MOD 256 without the MOD operator
-        Java:
-
-        public class Kata
-        {
-            public static int mod256WithoutMod(int number) {
-                return number - ((int) number / 256) * 256;
-            }
-        }
-
-     //////////////////////////////////////////////////////////////////
-
-        public class Kata
-        {
-            public static int mod256WithoutMod(int number) {
-                return number - ((int) number / 256) * 256;
-            }
-        }
-
-      /////////////////////////////////////////////////////////////////////////////
-
-        7 kyu
-        Suitcase packing
-        Java:
-
-        public class MrSquare {
-            public static boolean fit_in(int a, int b, int m, int n) {
-                return (a + b) <= Math.max(m, n)
-                        && Math.max(a, b) <= Math.min(n, m);
-            }
-        }
-
-       /////////////////////////////////////////////////////////////////////
-
-        7 kyu
-        Number of Rectangles in a Grid
-        Java:
-
-
-        public class Solution {
-
-            public static int numberOfRectangles(int m, int n) {
-                return n*m*(n+1)*(m+1)/4;
-            }
-
-        }
-
-       ////////////////////////////////////////////////////////////////
-
-        7 kyu
-                Friends
-        Java:
-
-        public class Friends {
-            public static int friends(int n) {
-                int friend = 0;
-                int max = 2;
-                while (n > max) {
-                    friend++;
-                    max *= 2;
+                } else {
+                    char[] chars = dna.toCharArray();
+                    for (int i = 0; i < chars.length; ++i) {
+                        char c = chars[i];
+                        chars[i] = (c == 'A') ? 'T'
+                                : (c == 'T') ? 'A'
+                                : (c == 'C') ? 'G'
+                                : (c == 'G') ? 'C'
+                                : c;
+                    }
+                    return new String(chars);
                 }
-                return friend;
             }
         }
 
-      ///////////////////////////////////////////////////////////////////////
-        7 kyu
-        Nth power rules them all!
+    ///////////////////////////////////////////
+
+        8 kyu
+        Convert a Number to a String!
                 Java:
 
-import java.util.Arrays;
+        class Kata {
+            public static String numberToString(int num) {
+                // Return a string of the number here!
+                int div = 0;
+                Boolean flag = false;
 
-        public class Kata {
-            public static int modifiedSum(int[] array, int power) {
-                return Arrays.stream(array).map(x -> (int)Math.pow(x, power) - x).sum();
+                if (num < 0) {
+                    div = num * -1;
+                    flag = true;
+                }
+                else {
+                    div = num;
+                }
+
+                int rem = 0;
+                StringBuilder st = new StringBuilder();
+
+                while (div > 0) {
+                    rem = div % 10;
+                    div = div /10;
+                    st.append(rem);
+                    if (flag) { st.append("-"); }
+                }
+
+                return st.reverse().toString();
             }
+
         }
 
-        ////////////////////////////////////////////////////////
+
+
+
+
+
+        ///////////////////////////
+                Discuss
 
         7 kyu
-        Simple Fun #37: House Numbers Sum
+        Extended weekends
         Java:
 
-import static java.util.stream.IntStream.of;
 
-        class Kata {
-            static int houseNumbersSum(int[] arr) {
-                return of(arr).takeWhile(i -> i > 0).sum();
+import static java.time.YearMonth.of;
+
+        interface Solution {
+            static String[] solve(int a, int b) {
+                var search = new String[]{"", "", "0"};
+                for (var date = of(a, 1); of(b + 1, 1).isAfter(date); date = date.plusMonths(1)) {
+                    if (date.atDay(1).getDayOfWeek().getValue() == 5 && date.lengthOfMonth() > 30) {
+                        search[search[0].isEmpty() ? 0 : 1] = date.getMonth().name();
+                        search[2] = Integer.parseInt(search[2]) + 1 + "";
+                    }
+                }
+                return search;
             }
         }
 
 
+
+
+        2 months ago
+        Refactor
+
+import static java.time.YearMonth.of;
+
+        interface Solution {
+            static String[] solve(int a, int b) {
+                var search = new String[]{"", "", "0"};
+                for (var date = of(a, 1); of(b + 1, 1).isAfter(date); date = date.plusMonths(1)) {
+                    if (date.atDay(1).getDayOfWeek().getValue() == 5 && date.lengthOfMonth() > 30) {
+                        search[search[0].isEmpty() ? 0 : 1] = date.getMonth().name();
+                        search[2] = Integer.parseInt(search[2]) + 1 + "";
+                    }
+                }
+                return search;
+            }
+        }
+
+       //////////////////////////////////////////////////////
+
+        8 kyu
+                Multiply
+        Java:
+
+        public class Multiply {
+            public static Double multiply(Double a, Double b) {
+                return a * b;
+            }
+        }
         */
     }
 }
